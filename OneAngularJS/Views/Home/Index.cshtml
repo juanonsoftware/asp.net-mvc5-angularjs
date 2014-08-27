@@ -1,1 +1,9 @@
-﻿
+﻿{{"Hello AngularJS"}}
+
+<div ng-controller="CategoryController as category">
+    <div ng-repeat="aCategory in category.categories">
+        <h2>{{aCategory.Name}}</h2>
+        <p>{{aCategory.Description}}</p>
+        <button ng-show="{{aCategory.HasRecords}}">Details</button>
+    </div>
+</div>
