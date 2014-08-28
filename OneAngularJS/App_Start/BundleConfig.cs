@@ -9,6 +9,10 @@ namespace OneAngularJS
             bundles.Add(new ScriptBundle("~/Scripts/Custom").Include("~/Scripts/Custom/app.js"));
 
             bundles.Add(new ScriptBundle("~/Scripts/AngularJS").Include("~/Scripts/angular.js"));
+
+            bundles.Add(new ScriptBundle("~/Scripts/Bootstrap").Include("~/Scripts/bootstrap.js"));
+
+            bundles.Add(new StyleBundle("~/Content/Bootstrap").Include("~/Content/bootstrap.css"));
         }
     }
 }

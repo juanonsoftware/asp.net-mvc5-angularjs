@@ -4,12 +4,20 @@
 <html ng-app="MMM">
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title></title>
+    <title>MMM AngularJS</title>
 
+    @Styles.Render("~/Content/Bootstrap")
     @Scripts.Render("~/Scripts/AngularJS")
     @Scripts.Render("~/Scripts/Custom")
 </head>
-<body>
-    @RenderBody()
+<body class="container">
+    <header>
+        <h1>
+            {{"Hello AngularJS"}}
+        </h1>
+    </header>
+    <section>
+        @RenderBody()    
+    </section>
 </body>
 </html>

@@ -20,21 +20,7 @@ namespace OneAngularJS.Controllers.Apis
         {
             if (_allCategories == null)
             {
-                _allCategories = new List<CategoryViewModel>()
-                   {
-                       new CategoryViewModel()
-                       {
-                           Name = "Slr",
-                           Description = "Salary",
-                           HasRecords = true
-                       },
-                       new CategoryViewModel()
-                       {
-                           Name = "Out",
-                           Description = "Out",
-                           HasRecords = false
-                       }
-                   };
+                _allCategories = new List<CategoryViewModel>();
             }
         }
 
