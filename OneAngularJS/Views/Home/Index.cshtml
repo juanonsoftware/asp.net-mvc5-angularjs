@@ -1,9 +1,22 @@
 ﻿{{"Hello AngularJS"}}
 
-<div ng-controller="CategoryController as category">
-    <div ng-repeat="aCategory in category.categories">
-        <h2>{{aCategory.Name}}</h2>
-        <p>{{aCategory.Description}}</p>
-        <button ng-show="{{aCategory.HasRecords}}">Details</button>
+<div ng-controller="CategoryController as categoryController">
+    <div ng-repeat="category in categoryController.categories">
+        <h2>{{category.Name}}</h2>
+        <p>{{category.Description}}</p>
+        <button ng-show="{{category.HasRecords}}">Details</button>
     </div>
 </div>
+
+<form name="newCategoryForm" ng-controller="AddCategoryController as addCategoryCtrl" ng-submit="newCategoryForm.$valid && addCategoryCtrl.addCategory()" novalidate>
+    Debug: {{addCategoryCtrl.category.Name}} / {{addCategoryCtrl.category.Description}}
+    <br />
+
+    <label>Name</label>
+    <input type="text" name="name" ng-model="addCategoryCtrl.category.Name" required />
+
+    <label>Description</label>
+    <textarea ng-model="addCategoryCtrl.category.Description" required></textarea>
+
+    <input type="submit" value="Submit" />
+</form>
