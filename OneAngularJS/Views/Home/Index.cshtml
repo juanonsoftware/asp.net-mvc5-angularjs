@@ -10,6 +10,7 @@
         <h3>{{category.Name}}</h3>
         <p>{{category.Description}}</p>
         <button ng-show="{{category.HasRecords}}">Details</button>
+        <button ng-click="delete($index)">Delete</button>
     </div>
 
     <h2>Add a new category</h2>

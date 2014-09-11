@@ -58,8 +58,11 @@ namespace OneAngularJS.Controllers.Apis
 
         public void Delete(Guid id)
         {
-            var existingCategory = _allCategories.First(x => x.Id == id);
-            _allCategories.Remove(existingCategory);
+            var existingCategory = _allCategories.FirstOrDefault(x => x.Id == id);
+            if (existingCategory != null)
+            {
+                _allCategories.Remove(existingCategory);
+            }
         }
     }
 }

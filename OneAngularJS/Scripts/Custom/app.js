@@ -15,6 +15,14 @@
             });
         };
 
+        $scope.delete = function (index) {
+            var id = $scope.categories[index].Id;
+            var url = '/api/Category/' + id;
+            $http.delete(url).success(function (data) {
+                $scope.loadCategories();
+            });
+        };
+
         $scope.addCategory = function () {
             $http.post('/api/Category', $scope.category).success(function (data) {
                 $scope.categories.push($scope.category);
