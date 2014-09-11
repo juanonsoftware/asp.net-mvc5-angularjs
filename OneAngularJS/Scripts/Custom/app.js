@@ -8,28 +8,37 @@
     //    });
     //});
 
-    app.controller("CategoryController", ['$http', function ($http) {
-        var controller = this;
-
-        this.loadCategories = function () {
+    app.controller("CategoryController", ['$scope', '$http', function ($scope, $http) {
+        $scope.loadCategories = function () {
             $http.get('/api/Category').success(function (data) {
-                controller.categories = data;
+                $scope.categories = data;
             });
         };
 
-        this.addCategory = function () {
-            $http.post('/api/Category', controller.category).success(function (data) {
-                controller.categories.push(controller.category);
-                controller.category = {};
+        $scope.addCategory = function () {
+            $http.post('/api/Category', $scope.category).success(function (data) {
+                $scope.categories.push($scope.category);
+                $scope.category = {};
             });
         };
 
-        this.resetCategories = function () {
-            controller.categories = [];
-            controller.category = {};
+        $scope.search = function () {
+            $http({
+                url: '/api/Category',
+                method: 'GET',
+                params: { 'query': $scope.query }
+            }).success(function (data, status) {
+                $scope.categories = data;
+            });
         };
 
-        this.resetCategories();
-        this.loadCategories();
+        $scope.resetCategories = function () {
+            $scope.categories = [];
+            $scope.category = {};
+            $scope.query = '';
+        };
+
+        $scope.resetCategories();
+        $scope.loadCategories();
     }]);
 })();

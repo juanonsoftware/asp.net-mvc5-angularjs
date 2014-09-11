@@ -1,8 +1,7 @@
-﻿using System;
-using System.Linq;
-using System.Web.Mvc;
-using OneAngularJS.Models;
+﻿using OneAngularJS.Models;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Http;
 
 namespace OneAngularJS.Controllers.Apis
@@ -26,37 +25,41 @@ namespace OneAngularJS.Controllers.Apis
 
         public IEnumerable<CategoryViewModel> Get()
         {
-            return _allCategories;
+            return Get(string.Empty);
+        }
+
+        public IEnumerable<CategoryViewModel> Get(string query)
+        {
+            if (string.IsNullOrWhiteSpace(query))
+            {
+                return _allCategories;
+            }
+            return _allCategories.Where(c => c.Name.Contains(query) || c.Description.Contains(query));
         }
 
         /// <summary>
         /// Create
         /// </summary>
-        public ActionResult Post(CategoryViewModel model)
+        public void Post(CategoryViewModel model)
         {
             _allCategories.Add(model);
-            return new EmptyResult();
         }
 
         /// <summary>
         /// Update
         /// </summary>
-        public ActionResult Put(CategoryViewModel model)
+        public void Put(CategoryViewModel model)
         {
             var existingCategory = _allCategories.First(x => x.Id == model.Id);
             _allCategories.Remove(existingCategory);
 
             _allCategories.Add(model);
-
-            return new EmptyResult();
         }
 
-        public ActionResult Delete(Guid id)
+        public void Delete(Guid id)
         {
             var existingCategory = _allCategories.First(x => x.Id == id);
             _allCategories.Remove(existingCategory);
-
-            return new EmptyResult();
         }
     }
 }
